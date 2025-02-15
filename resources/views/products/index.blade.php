@@ -30,6 +30,7 @@
         <th>Name</th>
         <th>Gtin</th>
         <th>Quantity</th>
+        <th>Set Stock</th>
         <th>Created At</th>
         <th>Updated At</th>
     </tr>
@@ -39,6 +40,9 @@
             <td>{{ $product->name }}</td>
             <td>{{ $product->gtin }}</td>
             <td>{{ $product->quantity }}</td>
+            <td>
+                <a href="{{ route('products.stock-set', ['productId' => $product->origin_id]) }}">Set Stock</a>
+            </td>
             <td>{{ $product->created_at }}</td>
             <td>{{ $product->updated_at }}</td>
         </tr>
