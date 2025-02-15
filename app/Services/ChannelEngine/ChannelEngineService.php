@@ -46,4 +46,38 @@ class ChannelEngineService implements ChannelEngineServiceInterface
 
         return $response;
     }
+
+    public function getProduct(string $productId): ChannelEngineResponseInterface
+    {
+        return $this->client->get(
+            uri   : 'products',
+            params: [
+                'search' => $productId,
+            ],
+        );
+    }
+
+    public function setProductStock(
+        string $productId,
+        int $stock,
+    ): void {
+        $this->client->patch(
+            uri : 'products',
+            body: [
+                'PropertiesToUpdate'           => [
+                    'stock',
+                ],
+                'MerchantProductRequestModels' => [
+                    [
+                        'MerchantProductNo' => $productId,
+                        'Stock'             => $stock,
+                    ],
+                ],
+            ],
+            headers: [
+                'Content-Type' => 'application/json',
+                'charset'      => 'utf-8',
+            ],
+        );
+    }
 }
