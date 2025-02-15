@@ -84,6 +84,15 @@ class ChannelEngineClient implements ChannelEngineClientInterface
         return $this->makeRequest(RequestMethodsEnum::POST, $uri, $body, $headers, $options);
     }
 
+    public function patch(
+        string $uri,
+        array $body = [],
+        array $headers = [],
+        array $options = [],
+    ): ChannelEngineResponseInterface {
+        return $this->makeRequest(RequestMethodsEnum::PATCH, $uri, $body, $headers, $options);
+    }
+
     /**
      * @param RequestMethodsEnum $method
      * @param string $uri

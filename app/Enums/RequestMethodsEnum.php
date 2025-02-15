@@ -8,4 +8,5 @@ enum RequestMethodsEnum
 {
     case GET;
     case POST;
+    case PATCH;
 }

@@ -31,22 +31,22 @@ class RequestFactory implements RequestFactoryInterface
             $method->name,
             $this->makeUri($uri, $method, $data),
             $headers,
-            $method === RequestMethodsEnum::GET ? null : http_build_query($data),
+            $method === RequestMethodsEnum::GET ? null : json_encode($data),
         );
     }
 
     public function makeUri(string $uri, RequestMethodsEnum $method, array $data = []): string
     {
-        $data['apiKey'] = $this->apiKey;
-
         // If $uri is not an absolute url, prepend it with the base url property
         if (preg_match('/^https?:\/\//', $uri) !== 1) {
             $uri = $this->baseUri . '/' . trim($uri, '/');
         }
 
         if ($method !== RequestMethodsEnum::GET) {
-            return $uri;
+            return $uri . '?' . http_build_query(['apiKey' => $this->apiKey]);
         }
+
+        $data['apiKey'] = $this->apiKey;
 
         return $uri . '?' . http_build_query($data);
     }
