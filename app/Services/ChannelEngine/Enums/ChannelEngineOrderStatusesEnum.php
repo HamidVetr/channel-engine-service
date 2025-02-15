@@ -17,4 +17,9 @@ enum ChannelEngineOrderStatusesEnum
     case RETURNED;
     case REQUEST_CORRECTION;
     case AWAITING_PAYMENT;
+
+    public static function fromName(string $name): self
+    {
+        return self::{$name};
+    }
 }
