@@ -6,6 +6,7 @@ namespace ChannelEngine\Providers;
 
 use ChannelEngine\ChannelEngineClient;
 use ChannelEngine\ChannelEngineService;
+use ChannelEngine\Console\Commands\GetOrdersCommand;
 use ChannelEngine\Contracts\ChannelEngineClientInterface;
 use ChannelEngine\Contracts\ChannelEngineServiceInterface;
 use ChannelEngine\Contracts\Factories\ChannelEngineResponseFactoryInterface;
@@ -66,6 +67,7 @@ class ChannelEngineServiceProvider extends ServiceProvider
     protected function registerCommands(): self
     {
         $this->commands([
+            GetOrdersCommand::class,
         ]);
 
         return $this;
